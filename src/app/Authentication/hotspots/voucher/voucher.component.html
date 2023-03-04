@@ -1,0 +1,107 @@
+<!-- <p>voucher works!</p> -->
+
+<p-dialog [(visible)]="display">
+  <input type="text" pInputText >
+  <input type="text" pInputText >
+  <input type="text" pInputText >
+  <input type="text" pInputText >
+   <input type="text" pInputText >
+  <input type="text" pInputText >
+  <button type="button" pButton autofocus></button>
+</p-dialog>
+<p-dialog [(visible)]="displayS">
+  <input type="text" pInputText >
+  <input type="text" pInputText >
+  <input type="text" pInputText >
+  <input type="text" pInputText >
+
+  <button type="button" pButton autofocus></button>
+</p-dialog>
+
+<div class="card">
+
+  <div class="flex justify-content-between flex-wrap card-container purple-container">
+      <div class="flex align-items-center justify-content-center  h-4rem  font-bold text-black border-round m-2"><h2>VOUCHER</h2><i class="pi pi-star p-4  text-5xl"  style="color: chocolate;"></i></div>
+      <div class="flex align-items-center justify-content-center border-none  h-4rem  font-bold text-white border-round m-2">     <button class="flex-1 md:flex-none flex align-items-center justify-content-center bg-indigo-500 font-bold text-white m-2 px-5 py-3 border-round" icon="pi pi-info-circle" (click)="showDialogS()">
+        SHOW     VOUCHER     </button>
+          <button (click)="showDialog()" icon="pi pi-info-circle" class="flex-1 md:flex-none flex align-items-center justify-content-center bg-indigo-500 font-bold text-white m-2 px-5 py-3 border-round">
+        ADD VOUCHER</button></div>
+  </div>
+</div>
+
+<!--
+<div class="card">
+  <div class="card-container indigo-container overflow-hidden">
+    <div class="flex align-items-center justify-content-start"><h2>VOUCHER</h2></div>
+
+      <div class="flex justify-content-spa flex-wrap mb-4">
+        <h2 class="flex-1 md:flex-none flex align-items-center justify-content-center bg-indigo-500 font-bold text-white m-2 px-5 py-3 border-round">VOUCHER</h2>
+
+
+      </div>
+  </div>
+</div> -->
+
+
+<p-table class="shadow-5 pb-5" [columns]="cols"  [value]="products" styleClass="p-datatable-striped" [paginator]="true" [rows]="10"
+ [tableStyle]="{'min-width': '50rem'}"   currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  [rowsPerPageOptions]="[5,10,25,50]"     [globalFilterFields]="['code','name','category','quantity','price']">
+  <ng-template pTemplate="header" let-columns>
+      <!-- <tr>
+          <th *ngFor="let col of columns" pSortableColumn="code" style="width:20%"> <p-sortIcon field=""></p-sortIcon>
+              {{col.header}}
+          </th>
+      </tr> -->
+      <tr>
+        <th pSortableColumn="code" field="code" style="width:20%" field="code" >Code
+        <i class="pi pi-sort" style="margin-left: 14.5em;"></i>
+          <!-- <p-sortIcon field="code" ></p-sortIcon> -->
+            <!-- <p-columnFilter  field="code" display="menu"></p-columnFilter> -->
+        </th>
+
+        <th pSortableColumn="name" style="width:20%">Name <p-sortIcon field="name"></p-sortIcon>
+          <!-- <p-columnFilter  field="name" display="menu"></p-columnFilter> -->
+        </th>
+        <th pSortableColumn="category" style="width:20%">Category <p-sortIcon field="category"></p-sortIcon>
+           <!-- <p-columnFilter  field="category" display="menu"></p-columnFilter> -->
+          </th>
+        <th pSortableColumn="quantity" style="width:20%">Quantity <p-sortIcon field="quantity"></p-sortIcon>
+           <!-- <p-columnFilter  field="quantity" display="menu"></p-columnFilter> -->
+          </th>
+        <th pSortableColumn="price" style="width:20%">Price <p-sortIcon field="price"></p-sortIcon>
+          <!-- <p-columnFilter  field="price" display="menu"></p-columnFilter> -->
+        </th>
+    </tr>
+    <tr>
+      <th>
+        <p-columnFilter type="text" field="code"></p-columnFilter>
+    </th>
+    <th>
+        <p-columnFilter type="text" field="name"></p-columnFilter>
+    </th>
+    <th>
+      <p-columnFilter type="text" field="category"></p-columnFilter>
+  </th>
+  <th>
+      <p-columnFilter type="text" field="quantity"></p-columnFilter>
+  </th>
+  <th>
+    <p-columnFilter type="text" field="price"></p-columnFilter>
+</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-product>
+      <!-- <tr>
+          <td *ngFor="let col of columns">
+              {{rowData[col.field]}}
+          </td>
+      </tr> -->
+      <tr>
+        <td>{{product.code}}</td>
+        <td>{{product.name}}</td>
+        <td>{{product.category}}</td>
+        <td>{{product.quantity}}</td>
+        <td>{{product.price | currency: 'INR'}}</td>
+    </tr>
+  </ng-template>
+</p-table>
